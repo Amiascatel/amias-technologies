@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(unzip:*)",
+      "Bash(npx vite build)",
+      "Bash(python:*)",
+      "Bash(node -e:*)",
+      "WebFetch(domain:www.sparcsystems.africa)",
+      "Bash(php artisan make:migration:*)",
+      "Bash(php artisan make:model:*)",
+      "Bash(php artisan:*)",
+      "Bash(findstr:*)",
+      "Bash(powershell -Command \"Get-Content ''d:\\\\project\\\\herd\\\\amias-technologies\\\\.env'' | Select-String ''DB_''\")",
+      "Bash(psql:*)",
+      "Bash(where:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(PGPASSWORD=1610 \"/c/Program Files/PostgreSQL/18/bin/psql.exe\":*)",
+      "Bash(npm run build:*)"
+    ]
+  }
+}

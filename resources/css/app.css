@@ -1,0 +1,259 @@
+@import 'tailwindcss';
+
+@import 'tw-animate-css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    --font-sans:
+        'Sora', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-xl: calc(var(--radius) + 8px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
+
+    /* Canvas — always-dark surface for footer / hero dark sections */
+    --color-canvas: var(--canvas);
+    --color-canvas-foreground: var(--canvas-foreground);
+}
+
+/* ============================================================
+   LIGHT MODE
+   ============================================================ */
+:root {
+    /* #F7F8FA — near-white page background */
+    --background: oklch(0.979 0.003 261);
+    /* #111827 — dark charcoal text */
+    --foreground: oklch(0.183 0.015 261);
+
+    /* #FFFFFF — white card / surface */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.183 0.015 261);
+
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.183 0.015 261);
+
+    /* #2563EB — blue accent */
+    --primary: oklch(0.546 0.228 264);
+    --primary-foreground: oklch(1 0 0);
+
+    /* #F0F2F5 — elevated / secondary bg */
+    --secondary: oklch(0.961 0.004 261);
+    --secondary-foreground: oklch(0.183 0.015 261);
+
+    /* #F0F2F5 — muted sections */
+    --muted: oklch(0.961 0.004 261);
+    /* #9CA3AF — muted text */
+    --muted-foreground: oklch(0.678 0.010 261);
+
+    /* #E4E7ED — overlay / hover bg */
+    --accent: oklch(0.925 0.007 261);
+    --accent-foreground: oklch(0.183 0.015 261);
+
+    --destructive: oklch(0.637 0.237 25.331);
+    --destructive-foreground: oklch(1 0 0);
+
+    /* #D1D5DE — soft border */
+    --border: oklch(0.866 0.008 261);
+    --input: oklch(0.866 0.008 261);
+    /* ring = blue accent */
+    --ring: oklch(0.546 0.228 264);
+
+    --chart-1: oklch(0.546 0.228 264);
+    --chart-2: oklch(0.725 0.148 160);
+    --chart-3: oklch(0.796 0.185 76);
+    --chart-4: oklch(0.637 0.237 25);
+    --chart-5: oklch(0.492 0.228 264);
+
+    /* 10px = 0.625rem */
+    --radius: 0.625rem;
+
+    /* Sidebar — white in light mode */
+    --sidebar: oklch(1 0 0);
+    --sidebar-foreground: oklch(0.183 0.015 261);
+    --sidebar-primary: oklch(0.546 0.228 264);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.961 0.004 261);
+    --sidebar-accent-foreground: oklch(0.183 0.015 261);
+    --sidebar-border: oklch(0.866 0.008 261);
+    --sidebar-ring: oklch(0.546 0.228 264);
+
+    /* Canvas — dark footer/sections, always-dark */
+    --canvas: oklch(0.183 0.015 261);
+    --canvas-foreground: oklch(0.963 0.004 261);
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+.dark {
+    /* #0D0F14 */
+    --background: oklch(0.116 0.012 261);
+    /* #F1F5F9 */
+    --foreground: oklch(0.963 0.004 261);
+
+    /* #161A23 */
+    --card: oklch(0.157 0.018 261);
+    --card-foreground: oklch(0.963 0.004 261);
+
+    --popover: oklch(0.157 0.018 261);
+    --popover-foreground: oklch(0.963 0.004 261);
+
+    /* Blue stays same in dark */
+    --primary: oklch(0.546 0.228 264);
+    --primary-foreground: oklch(1 0 0);
+
+    /* #1E2330 */
+    --secondary: oklch(0.200 0.023 261);
+    --secondary-foreground: oklch(0.963 0.004 261);
+
+    /* #1E2330 */
+    --muted: oklch(0.200 0.023 261);
+    /* #4B5669 */
+    --muted-foreground: oklch(0.398 0.022 261);
+
+    /* #252B3B */
+    --accent: oklch(0.231 0.026 261);
+    --accent-foreground: oklch(0.963 0.004 261);
+
+    --destructive: oklch(0.637 0.237 25.331);
+    --destructive-foreground: oklch(1 0 0);
+
+    /* #2A3147 */
+    --border: oklch(0.257 0.031 261);
+    --input: oklch(0.257 0.031 261);
+    --ring: oklch(0.546 0.228 264);
+
+    --chart-1: oklch(0.546 0.228 264);
+    --chart-2: oklch(0.725 0.148 160);
+    --chart-3: oklch(0.796 0.185 76);
+    --chart-4: oklch(0.637 0.237 25);
+    --chart-5: oklch(0.492 0.228 264);
+
+    /* #161A23 — sidebar same as card in dark */
+    --sidebar: oklch(0.157 0.018 261);
+    --sidebar-foreground: oklch(0.963 0.004 261);
+    --sidebar-primary: oklch(0.546 0.228 264);
+    --sidebar-primary-foreground: oklch(1 0 0);
+    --sidebar-accent: oklch(0.200 0.023 261);
+    --sidebar-accent-foreground: oklch(0.963 0.004 261);
+    --sidebar-border: oklch(0.257 0.031 261);
+    --sidebar-ring: oklch(0.546 0.228 264);
+
+    /* Canvas dark — even darker */
+    --canvas: oklch(0.116 0.012 261);
+    --canvas-foreground: oklch(0.669 0.018 261);
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+/* ============================================================
+   CUSTOM ANIMATIONS
+   ============================================================ */
+
+/* Nav dropdown: fade + slide down */
+@keyframes navDropdown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Nav dropdown centered (Services): includes X centering */
+@keyframes navDropdownCenter {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Splash screen text pulse */
+@keyframes splashPulse {
+    0%, 100% { opacity: 1; letter-spacing: 6px; }
+    50%       { opacity: 0.55; letter-spacing: 8px; }
+}
+
+/* Splash progress bar fill */
+@keyframes splashProgress {
+    from { width: 0%; }
+    to   { width: 100%; }
+}
+
+/* Splash ring spin (already have animate-spin but keeping custom for flexibility) */
+@keyframes splashSpin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+/* Page content fade-in on load */
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
