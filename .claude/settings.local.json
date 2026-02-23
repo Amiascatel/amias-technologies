@@ -15,7 +15,16 @@
       "Bash(where:*)",
       "Bash(powershell -Command:*)",
       "Bash(PGPASSWORD=1610 \"/c/Program Files/PostgreSQL/18/bin/psql.exe\":*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(python3:*)",
+      "Bash(/c/Users/AMIAS/AppData/Local/Microsoft/WindowsApps/python3:*)",
+      "Bash(node --version:*)",
+      "Bash(printf:*)",
+      "Bash(node:*)",
+      "Bash(powershell -File:*)",
+      "Bash(bash --version)",
+      "Bash(cat:*)",
+      "Bash(/tmp/write_edit.js:*)"
     ]
   }
 }

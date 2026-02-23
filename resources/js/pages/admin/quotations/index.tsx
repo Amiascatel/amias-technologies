@@ -10,11 +10,11 @@ interface Quotation {
 }
 
 const statusColor: Record<string, string> = {
-    draft:    'bg-gray-100 text-gray-700',
-    sent:     'bg-blue-100 text-blue-700',
-    accepted: 'bg-green-100 text-green-700',
-    rejected: 'bg-red-100 text-red-700',
-    expired:  'bg-orange-100 text-orange-700',
+    draft:    'bg-muted text-muted-foreground',
+    sent:     'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+    accepted: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    rejected: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    expired:  'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
 };
 
 export default function QuotationsIndex({ quotations }: { quotations: Quotation[] }) {
@@ -34,11 +34,11 @@ export default function QuotationsIndex({ quotations }: { quotations: Quotation[
                     </Link>
                 </div>
                 {props.flash?.success && (
-                    <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-green-700 text-sm">{props.flash.success}</div>
+                    <div className="rounded-lg bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800 px-4 py-3 text-green-700 dark:text-green-400 text-sm">{props.flash.success}</div>
                 )}
-                <div className="rounded-xl border bg-white overflow-hidden">
+                <div className="rounded-xl border bg-card overflow-hidden">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-500">
+                        <thead className="bg-muted/50 text-xs font-semibold uppercase text-muted-foreground">
                             <tr>
                                 <th className="px-4 py-3 text-left">Quote #</th>
                                 <th className="px-4 py-3 text-left">Client</th>
@@ -49,16 +49,16 @@ export default function QuotationsIndex({ quotations }: { quotations: Quotation[
                                 <th className="px-4 py-3 text-left">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody className="divide-y divide-border">
                             {quotations.length === 0 && (
-                                <tr><td colSpan={7} className="px-4 py-8 text-center text-gray-400">No quotations yet.</td></tr>
+                                <tr><td colSpan={7} className="px-4 py-8 text-center text-muted-foreground/70">No quotations yet.</td></tr>
                             )}
                             {quotations.map(q => (
-                                <tr key={q.id} className="hover:bg-gray-50">
+                                <tr key={q.id} className="hover:bg-muted/30">
                                     <td className="px-4 py-3 font-mono font-semibold text-blue-600">{q.quote_number}</td>
                                     <td className="px-4 py-3">
                                         <div className="font-medium">{q.client_name}</div>
-                                        {q.client_company && <div className="text-xs text-gray-400">{q.client_company}</div>}
+                                        {q.client_company && <div className="text-xs text-muted-foreground/70">{q.client_company}</div>}
                                     </td>
                                     <td className="px-4 py-3">{q.quote_date}</td>
                                     <td className="px-4 py-3">{q.validity_date ?? '—'}</td>

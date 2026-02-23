@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { UploadCloud } from 'lucide-react';
 
 const taClass = 'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring resize-y';
-const sel = 'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm';
+const sel = 'w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm';
 
 export default function DocumentCreate() {
     const fileRef = useRef<HTMLInputElement>(null);
@@ -25,7 +25,7 @@ export default function DocumentCreate() {
             <Head title="Upload Document" />
             <div className="p-6 max-w-xl">
                 <h1 className="text-2xl font-bold mb-6">Upload Document</h1>
-                <form onSubmit={submit} className="space-y-5 bg-white rounded-xl border p-6">
+                <form onSubmit={submit} className="space-y-5 bg-card rounded-xl border p-6">
                     <div className="space-y-1"><Label>Title *</Label>
                         <Input value={data.title} onChange={e => setData('title', e.target.value)} />
                         {errors.title && <p className="text-xs text-red-500">{errors.title}</p>}
@@ -46,10 +46,10 @@ export default function DocumentCreate() {
                             className="border-2 border-dashed rounded-xl p-8 text-center cursor-pointer hover:border-blue-400 transition-colors"
                             onClick={() => fileRef.current?.click()}
                         >
-                            <UploadCloud className="size-10 mx-auto mb-3 text-gray-300" />
+                            <UploadCloud className="size-10 mx-auto mb-3 text-muted-foreground/40" />
                             {data.file
-                                ? <p className="text-sm font-medium text-gray-700">{(data.file as File).name}</p>
-                                : <><p className="text-sm text-gray-500">Click to select or drop a file</p><p className="text-xs text-gray-400 mt-1">PDF, DOCX, XLSX, PNG, JPG — up to 20 MB</p></>
+                                ? <p className="text-sm font-medium text-foreground">{(data.file as File).name}</p>
+                                : <><p className="text-sm text-muted-foreground">Click to select or drop a file</p><p className="text-xs text-muted-foreground/70 mt-1">PDF, DOCX, XLSX, PNG, JPG — up to 20 MB</p></>
                             }
                             <input ref={fileRef} type="file" className="hidden" onChange={e => { if (e.target.files?.[0]) setData('file', e.target.files[0]); }} />
                         </div>

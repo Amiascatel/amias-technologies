@@ -60,14 +60,14 @@ export default function InvoiceCreate({ nextNumber, defaults }: Props) {
                 <form onSubmit={submit} className="space-y-6">
 
                     {/* Header */}
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
-                        <h2 className="col-span-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">Invoice Details</h2>
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
+                        <h2 className="col-span-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Invoice Details</h2>
                         <div className="space-y-1"><Label>Invoice Number *</Label>
                             <Input value={data.invoice_number} onChange={e => setData('invoice_number', e.target.value)} />
                             {errors.invoice_number && <p className="text-xs text-red-500">{errors.invoice_number}</p>}
                         </div>
                         <div className="space-y-1"><Label>Status</Label>
-                            <select className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm" value={data.status} onChange={e => setData('status', e.target.value)}>
+                            <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm" value={data.status} onChange={e => setData('status', e.target.value)}>
                                 {['unpaid','partial','paid'].map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase()+s.slice(1)}</option>)}
                             </select>
                         </div>
@@ -86,8 +86,8 @@ export default function InvoiceCreate({ nextNumber, defaults }: Props) {
                     </div>
 
                     {/* Client */}
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
-                        <h2 className="col-span-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">Billed To</h2>
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
+                        <h2 className="col-span-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Billed To</h2>
                         <div className="space-y-1"><Label>Client Name *</Label>
                             <Input value={data.client_name} onChange={e => setData('client_name', e.target.value)} />
                             {errors.client_name && <p className="text-xs text-red-500">{errors.client_name}</p>}
@@ -107,11 +107,11 @@ export default function InvoiceCreate({ nextNumber, defaults }: Props) {
                     </div>
 
                     {/* Line Items */}
-                    <div className="bg-white rounded-xl border p-6 space-y-4">
-                        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Line Items</h2>
+                    <div className="bg-card rounded-xl border p-6 space-y-4">
+                        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Line Items</h2>
                         <div className="overflow-x-auto">
                             <table className="w-full text-sm">
-                                <thead className="bg-gray-50 text-xs text-gray-500 uppercase">
+                                <thead className="bg-muted/50 text-xs text-muted-foreground uppercase">
                                     <tr>
                                         <th className="px-3 py-2 text-left w-[40%]">Description</th>
                                         <th className="px-3 py-2 text-right w-16">Qty</th>
@@ -121,7 +121,7 @@ export default function InvoiceCreate({ nextNumber, defaults }: Props) {
                                         <th className="px-3 py-2 w-10"></th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y">
+                                <tbody className="divide-y divide-border">
                                     {items.map((item, i) => (
                                         <tr key={i}>
                                             <td className="px-3 py-2"><Input value={item.description} onChange={e => updateItem(i, 'description', e.target.value)} /></td>
@@ -166,22 +166,22 @@ export default function InvoiceCreate({ nextNumber, defaults }: Props) {
                     </div>
 
                     {/* Payment Details */}
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
-                        <h2 className="col-span-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">Payment Details</h2>
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
+                        <h2 className="col-span-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Payment Details</h2>
                         <div className="space-y-1"><Label>Bank Name</Label><Input value={data.bank_name} onChange={e => setData('bank_name', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Account Name</Label><Input value={data.account_name} onChange={e => setData('account_name', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Account Number</Label><Input value={data.account_number} onChange={e => setData('account_number', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Branch / Sort Code</Label><Input value={data.branch_code} onChange={e => setData('branch_code', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Mobile Money</Label><Input value={data.mobile_money} onChange={e => setData('mobile_money', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Currency</Label>
-                            <select className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm" value={data.currency} onChange={e => setData('currency', e.target.value)}>
+                            <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm" value={data.currency} onChange={e => setData('currency', e.target.value)}>
                                 {['ZMW','USD','ZAR','EUR','GBP'].map(c => <option key={c}>{c}</option>)}
                             </select>
                         </div>
                     </div>
 
                     {/* Notes */}
-                    <div className="bg-white rounded-xl border p-6 space-y-2">
+                    <div className="bg-card rounded-xl border p-6 space-y-2">
                         <Label>Notes &amp; Terms</Label>
                         <textarea className={taClass} rows={3} value={data.notes} onChange={e => setData('notes', e.target.value)} />
                     </div>

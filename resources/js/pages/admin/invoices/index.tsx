@@ -11,9 +11,9 @@ interface Invoice {
 interface Props { invoices: Invoice[] }
 
 const statusColor: Record<string, string> = {
-    unpaid:  'bg-red-100 text-red-700',
-    partial: 'bg-yellow-100 text-yellow-700',
-    paid:    'bg-green-100 text-green-700',
+    unpaid:  'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    partial: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
+    paid:    'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
 };
 
 export default function InvoicesIndex({ invoices }: Props) {
@@ -34,12 +34,12 @@ export default function InvoicesIndex({ invoices }: Props) {
                 </div>
 
                 {props.flash?.success && (
-                    <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-green-700 text-sm">{props.flash.success}</div>
+                    <div className="rounded-lg bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800 px-4 py-3 text-green-700 dark:text-green-400 text-sm">{props.flash.success}</div>
                 )}
 
-                <div className="rounded-xl border bg-white overflow-hidden">
+                <div className="rounded-xl border bg-card overflow-hidden">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-500">
+                        <thead className="bg-muted/50 text-xs font-semibold uppercase text-muted-foreground">
                             <tr>
                                 <th className="px-4 py-3 text-left">Invoice #</th>
                                 <th className="px-4 py-3 text-left">Client</th>
@@ -50,16 +50,16 @@ export default function InvoicesIndex({ invoices }: Props) {
                                 <th className="px-4 py-3 text-left">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody className="divide-y divide-border">
                             {invoices.length === 0 && (
-                                <tr><td colSpan={7} className="px-4 py-8 text-center text-gray-400">No invoices yet.</td></tr>
+                                <tr><td colSpan={7} className="px-4 py-8 text-center text-muted-foreground/70">No invoices yet.</td></tr>
                             )}
                             {invoices.map(inv => (
-                                <tr key={inv.id} className="hover:bg-gray-50">
+                                <tr key={inv.id} className="hover:bg-muted/30">
                                     <td className="px-4 py-3 font-mono font-semibold text-blue-600">{inv.invoice_number}</td>
                                     <td className="px-4 py-3">
                                         <div className="font-medium">{inv.client_name}</div>
-                                        {inv.client_company && <div className="text-xs text-gray-400">{inv.client_company}</div>}
+                                        {inv.client_company && <div className="text-xs text-muted-foreground/70">{inv.client_company}</div>}
                                     </td>
                                     <td className="px-4 py-3">{inv.invoice_date}</td>
                                     <td className="px-4 py-3">{inv.due_date ?? '—'}</td>

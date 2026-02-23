@@ -9,9 +9,9 @@ interface Message {
 }
 
 const statusColor: Record<string, string> = {
-    new:     'bg-blue-100 text-blue-700',
-    read:    'bg-gray-100 text-gray-600',
-    replied: 'bg-green-100 text-green-700',
+    new:     'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+    read:    'bg-muted text-muted-foreground',
+    replied: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
 };
 
 export default function MessagesIndex({ messages, newCount }: { messages: Message[]; newCount: number }) {
@@ -31,11 +31,11 @@ export default function MessagesIndex({ messages, newCount }: { messages: Messag
                     )}
                 </div>
                 {props.flash?.success && (
-                    <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-green-700 text-sm">{props.flash.success}</div>
+                    <div className="rounded-lg bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800 px-4 py-3 text-green-700 dark:text-green-400 text-sm">{props.flash.success}</div>
                 )}
-                <div className="rounded-xl border bg-white overflow-hidden">
+                <div className="rounded-xl border bg-card overflow-hidden">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-500">
+                        <thead className="bg-muted/50 text-xs font-semibold uppercase text-muted-foreground">
                             <tr>
                                 <th className="px-4 py-3 text-left">From</th>
                                 <th className="px-4 py-3 text-left">Subject</th>
@@ -44,21 +44,21 @@ export default function MessagesIndex({ messages, newCount }: { messages: Messag
                                 <th className="px-4 py-3 text-left">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody className="divide-y divide-border">
                             {messages.length === 0 && (
-                                <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-400">No messages yet.</td></tr>
+                                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground/70">No messages yet.</td></tr>
                             )}
                             {messages.map(m => (
-                                <tr key={m.id} className={`hover:bg-gray-50 ${m.status === 'new' ? 'font-semibold' : ''}`}>
+                                <tr key={m.id} className={`hover:bg-muted/30 ${m.status === 'new' ? 'font-semibold' : ''}`}>
                                     <td className="px-4 py-3">
                                         <div>{m.name}</div>
-                                        <div className="text-xs text-gray-400 font-normal">{m.email}</div>
+                                        <div className="text-xs text-muted-foreground/70 font-normal">{m.email}</div>
                                     </td>
                                     <td className="px-4 py-3 max-w-[220px] truncate">{m.subject}</td>
                                     <td className="px-4 py-3">
                                         <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${statusColor[m.status]}`}>{m.status}</span>
                                     </td>
-                                    <td className="px-4 py-3 text-xs text-gray-400">{m.created_at.slice(0, 10)}</td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground/70">{m.created_at.slice(0, 10)}</td>
                                     <td className="px-4 py-3 flex gap-2">
                                         <Link href={`/admin/contact-messages/${m.id}`}><Button size="sm" variant="outline"><Eye className="size-3.5" /></Button></Link>
                                         <Button size="sm" variant="destructive" onClick={() => del(m.id, m.name)}><Trash2 className="size-3.5" /></Button>

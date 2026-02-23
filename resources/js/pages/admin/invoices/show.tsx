@@ -16,9 +16,9 @@ interface Invoice {
 }
 
 const statusColor: Record<string, string> = {
-    unpaid:  'bg-red-100 text-red-700',
-    partial: 'bg-yellow-100 text-yellow-700',
-    paid:    'bg-green-100 text-green-700',
+    unpaid:  'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+    partial: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
+    paid:    'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
 };
 
 const fmt = (n: string | number, cur = 'ZMW') => `${cur} ${Number(n).toLocaleString('en-ZM', { minimumFractionDigits: 2 })}`;
@@ -38,41 +38,41 @@ export default function InvoiceShow({ invoice }: { invoice: Invoice }) {
                 </div>
 
                 {/* Invoice Document */}
-                <div id="invoice-print" className="bg-white rounded-xl border p-8 print:border-0 print:rounded-none space-y-8">
+                <div id="invoice-print" className="bg-card print:bg-white rounded-xl border p-8 print:border-0 print:rounded-none space-y-8">
                     {/* Header */}
                     <div className="flex justify-between items-start">
                         <div>
                             <h1 className="text-3xl font-black tracking-tight" style={{ color: '#2563EB' }}>INVOICE</h1>
-                            <p className="text-lg font-semibold mt-1 text-gray-700">{invoice.invoice_number}</p>
-                            {invoice.contract_ref && <p className="text-xs text-gray-400 mt-0.5">Contract Ref: {invoice.contract_ref}</p>}
+                            <p className="text-lg font-semibold mt-1 text-foreground/80">{invoice.invoice_number}</p>
+                            {invoice.contract_ref && <p className="text-xs text-muted-foreground/70 mt-0.5">Contract Ref: {invoice.contract_ref}</p>}
                         </div>
                         <div className="text-right">
-                            <p className="text-xl font-bold text-gray-900">Amias Technologies Ltd</p>
-                            <p className="text-sm text-gray-500">Lusaka, Zambia</p>
-                            <p className="text-sm text-gray-500">info@amiastechnologies.com</p>
-                            <p className="text-sm text-gray-500">+260 977 090 786</p>
+                            <p className="text-xl font-bold text-foreground">Amias Technologies Ltd</p>
+                            <p className="text-sm text-muted-foreground">Lusaka, Zambia</p>
+                            <p className="text-sm text-muted-foreground">info@amiastechnologies.com</p>
+                            <p className="text-sm text-muted-foreground">+260 977 090 786</p>
                         </div>
                     </div>
 
                     {/* Meta Row */}
                     <div className="grid grid-cols-3 gap-6 border-t border-b py-4">
-                        <div><p className="text-xs text-gray-400 uppercase font-semibold">Invoice Date</p><p className="font-semibold">{invoice.invoice_date}</p></div>
-                        <div><p className="text-xs text-gray-400 uppercase font-semibold">Due Date</p><p className="font-semibold">{invoice.due_date ?? '—'}</p></div>
+                        <div><p className="text-xs text-muted-foreground/70 uppercase font-semibold">Invoice Date</p><p className="font-semibold">{invoice.invoice_date}</p></div>
+                        <div><p className="text-xs text-muted-foreground/70 uppercase font-semibold">Due Date</p><p className="font-semibold">{invoice.due_date ?? '—'}</p></div>
                         <div>
-                            <p className="text-xs text-gray-400 uppercase font-semibold">Status</p>
+                            <p className="text-xs text-muted-foreground/70 uppercase font-semibold">Status</p>
                             <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-bold capitalize ${statusColor[invoice.status]}`}>{invoice.status}</span>
                         </div>
                     </div>
 
                     {/* Billed To */}
                     <div>
-                        <p className="text-xs text-gray-400 uppercase font-semibold mb-1">Billed To</p>
-                        <p className="font-bold text-gray-900">{invoice.client_name}</p>
-                        {invoice.client_company && <p className="text-sm text-gray-600">{invoice.client_company}</p>}
-                        {invoice.client_address && <p className="text-sm text-gray-500 whitespace-pre-line">{invoice.client_address}</p>}
-                        {invoice.client_phone && <p className="text-sm text-gray-500">{invoice.client_phone}</p>}
-                        {invoice.client_email && <p className="text-sm text-gray-500">{invoice.client_email}</p>}
-                        {invoice.project_description && <p className="text-sm mt-1 text-gray-600"><span className="font-semibold">Re:</span> {invoice.project_description}</p>}
+                        <p className="text-xs text-muted-foreground/70 uppercase font-semibold mb-1">Billed To</p>
+                        <p className="font-bold text-foreground">{invoice.client_name}</p>
+                        {invoice.client_company && <p className="text-sm text-muted-foreground">{invoice.client_company}</p>}
+                        {invoice.client_address && <p className="text-sm text-muted-foreground whitespace-pre-line">{invoice.client_address}</p>}
+                        {invoice.client_phone && <p className="text-sm text-muted-foreground">{invoice.client_phone}</p>}
+                        {invoice.client_email && <p className="text-sm text-muted-foreground">{invoice.client_email}</p>}
+                        {invoice.project_description && <p className="text-sm mt-1 text-muted-foreground"><span className="font-semibold">Re:</span> {invoice.project_description}</p>}
                     </div>
 
                     {/* Line Items */}
@@ -87,10 +87,10 @@ export default function InvoiceShow({ invoice }: { invoice: Invoice }) {
                                 <th className="px-4 py-2 text-right">Amount</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody className="divide-y divide-border">
                             {(invoice.items ?? []).map((item, i) => (
-                                <tr key={i} className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                    <td className="px-4 py-2 text-gray-400">{i + 1}</td>
+                                <tr key={i} className={i % 2 === 0 ? 'bg-transparent' : 'bg-muted/30'}>
+                                    <td className="px-4 py-2 text-muted-foreground/70">{i + 1}</td>
                                     <td className="px-4 py-2">{item.description}</td>
                                     <td className="px-4 py-2 text-right">{item.qty}</td>
                                     <td className="px-4 py-2 text-right">{fmt(item.unit_price, invoice.currency)}</td>
@@ -104,9 +104,9 @@ export default function InvoiceShow({ invoice }: { invoice: Invoice }) {
                     {/* Totals */}
                     <div className="flex justify-end">
                         <div className="w-72 space-y-1 text-sm">
-                            <div className="flex justify-between"><span className="text-gray-500">Subtotal</span><span>{fmt(invoice.subtotal, invoice.currency)}</span></div>
-                            {Number(invoice.discount) > 0 && <div className="flex justify-between"><span className="text-gray-500">Discount</span><span>- {fmt(invoice.discount, invoice.currency)}</span></div>}
-                            <div className="flex justify-between"><span className="text-gray-500">VAT ({invoice.vat_rate}%)</span><span>{fmt(invoice.vat_amount, invoice.currency)}</span></div>
+                            <div className="flex justify-between"><span className="text-muted-foreground">Subtotal</span><span>{fmt(invoice.subtotal, invoice.currency)}</span></div>
+                            {Number(invoice.discount) > 0 && <div className="flex justify-between"><span className="text-muted-foreground">Discount</span><span>- {fmt(invoice.discount, invoice.currency)}</span></div>}
+                            <div className="flex justify-between"><span className="text-muted-foreground">VAT ({invoice.vat_rate}%)</span><span>{fmt(invoice.vat_amount, invoice.currency)}</span></div>
                             <div className="flex justify-between font-bold text-base border-t pt-2" style={{ color: '#2563EB' }}>
                                 <span>Total Due</span><span>{fmt(invoice.total, invoice.currency)}</span>
                             </div>
@@ -117,24 +117,24 @@ export default function InvoiceShow({ invoice }: { invoice: Invoice }) {
                     {(invoice.bank_name || invoice.account_number) && (
                         <div className="rounded-lg p-4 space-y-1 text-sm" style={{ backgroundColor: '#EFF6FF', border: '1px solid #BFDBFE' }}>
                             <p className="font-bold text-blue-700 mb-2">Payment Details</p>
-                            {invoice.bank_name && <p><span className="text-gray-500">Bank:</span> {invoice.bank_name}</p>}
-                            {invoice.account_name && <p><span className="text-gray-500">Account Name:</span> {invoice.account_name}</p>}
-                            {invoice.account_number && <p><span className="text-gray-500">Account Number:</span> {invoice.account_number}</p>}
-                            {invoice.branch_code && <p><span className="text-gray-500">Branch / Sort Code:</span> {invoice.branch_code}</p>}
-                            {invoice.mobile_money && <p><span className="text-gray-500">Mobile Money:</span> {invoice.mobile_money}</p>}
+                            {invoice.bank_name && <p><span className="text-muted-foreground">Bank:</span> {invoice.bank_name}</p>}
+                            {invoice.account_name && <p><span className="text-muted-foreground">Account Name:</span> {invoice.account_name}</p>}
+                            {invoice.account_number && <p><span className="text-muted-foreground">Account Number:</span> {invoice.account_number}</p>}
+                            {invoice.branch_code && <p><span className="text-muted-foreground">Branch / Sort Code:</span> {invoice.branch_code}</p>}
+                            {invoice.mobile_money && <p><span className="text-muted-foreground">Mobile Money:</span> {invoice.mobile_money}</p>}
                         </div>
                     )}
 
                     {/* Notes */}
                     {invoice.notes && (
-                        <div className="text-sm text-gray-500 border-t pt-4">
-                            <p className="font-semibold text-gray-700 mb-1">Notes &amp; Terms</p>
+                        <div className="text-sm text-muted-foreground border-t pt-4">
+                            <p className="font-semibold text-foreground/80 mb-1">Notes &amp; Terms</p>
                             <p className="whitespace-pre-line">{invoice.notes}</p>
                         </div>
                     )}
 
                     {/* Footer */}
-                    <div className="border-t pt-4 text-xs text-gray-400 text-center">
+                    <div className="border-t pt-4 text-xs text-muted-foreground/70 text-center">
                         Thank you for your business — Amias Technologies Ltd
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 const taClass = 'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-ring resize-y';
-const sel = 'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm';
+const sel = 'w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm';
 
 interface Ticket {
     id: number; ticket_number: string; subject: string; description: string;
@@ -30,7 +30,7 @@ export default function TicketEdit({ ticket: t }: { ticket: Ticket }) {
             <Head title={`Edit ${t.ticket_number}`} />
             <div className="p-6 max-w-2xl">
                 <h1 className="text-2xl font-bold mb-6">Edit Ticket — {t.ticket_number}</h1>
-                <form onSubmit={submit} className="space-y-5 bg-white rounded-xl border p-6">
+                <form onSubmit={submit} className="space-y-5 bg-card rounded-xl border p-6">
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1"><Label>Status</Label>
                             <select className={sel} value={data.status} onChange={e => setData('status', e.target.value)}>

@@ -10,12 +10,12 @@ interface Doc {
 }
 
 const catColor: Record<string, string> = {
-    invoice:   'bg-blue-100 text-blue-700',
-    quotation: 'bg-purple-100 text-purple-700',
-    contract:  'bg-green-100 text-green-700',
-    report:    'bg-orange-100 text-orange-700',
-    proposal:  'bg-yellow-100 text-yellow-700',
-    other:     'bg-gray-100 text-gray-600',
+    invoice:   'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+    quotation: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+    contract:  'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+    report:    'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
+    proposal:  'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400',
+    other:     'bg-muted text-muted-foreground',
 };
 
 const fmtSize = (bytes: number) => {
@@ -39,11 +39,11 @@ export default function DocumentsIndex({ documents }: { documents: Doc[] }) {
                     <Link href="/admin/documents/create"><Button><Plus className="size-4 mr-1" /> Upload Document</Button></Link>
                 </div>
                 {props.flash?.success && (
-                    <div className="rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-green-700 text-sm">{props.flash.success}</div>
+                    <div className="rounded-lg bg-green-50 dark:bg-green-950/50 border border-green-200 dark:border-green-800 px-4 py-3 text-green-700 dark:text-green-400 text-sm">{props.flash.success}</div>
                 )}
-                <div className="rounded-xl border bg-white overflow-hidden">
+                <div className="rounded-xl border bg-card overflow-hidden">
                     <table className="w-full text-sm">
-                        <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-500">
+                        <thead className="bg-muted/50 text-xs font-semibold uppercase text-muted-foreground">
                             <tr>
                                 <th className="px-4 py-3 text-left">Title</th>
                                 <th className="px-4 py-3 text-left">Category</th>
@@ -54,20 +54,20 @@ export default function DocumentsIndex({ documents }: { documents: Doc[] }) {
                                 <th className="px-4 py-3 text-left">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody className="divide-y divide-border">
                             {documents.length === 0 && (
-                                <tr><td colSpan={7} className="px-4 py-8 text-center text-gray-400">No documents yet.</td></tr>
+                                <tr><td colSpan={7} className="px-4 py-8 text-center text-muted-foreground/70">No documents yet.</td></tr>
                             )}
                             {documents.map(doc => (
-                                <tr key={doc.id} className="hover:bg-gray-50">
+                                <tr key={doc.id} className="hover:bg-muted/30">
                                     <td className="px-4 py-3 font-medium">{doc.title}</td>
                                     <td className="px-4 py-3">
                                         <span className={`inline-flex rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${catColor[doc.category]}`}>{doc.category}</span>
                                     </td>
-                                    <td className="px-4 py-3 text-xs text-gray-500 max-w-[180px] truncate">{doc.file_name}</td>
-                                    <td className="px-4 py-3 text-xs text-gray-500">{fmtSize(doc.file_size)}</td>
-                                    <td className="px-4 py-3 text-xs text-gray-500">{doc.uploaded_by ?? '—'}</td>
-                                    <td className="px-4 py-3 text-xs text-gray-400">{doc.created_at.slice(0, 10)}</td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground max-w-[180px] truncate">{doc.file_name}</td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground">{fmtSize(doc.file_size)}</td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground">{doc.uploaded_by ?? '—'}</td>
+                                    <td className="px-4 py-3 text-xs text-muted-foreground/70">{doc.created_at.slice(0, 10)}</td>
                                     <td className="px-4 py-3 flex gap-2">
                                         <a href={`/storage/${doc.file_path}`} target="_blank" rel="noreferrer">
                                             <Button size="sm" variant="outline"><Download className="size-3.5" /></Button>

@@ -1,52 +1,39 @@
 <?php
 
-namespace App\Models;
+namespace AppModels;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Fortify\TwoFactorAuthenticatable;
+use IlluminateDatabaseEloquentFactoriesHasFactory;
+use IlluminateFoundationAuthUser as Authenticatable;
+use IlluminateNotificationsNotifiable;
+use LaravelFortifyTwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'email', 'password', 'role', 'phone', 'company',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
-        'password',
-        'two_factor_secret',
-        'two_factor_recovery_codes',
-        'remember_token',
+        'password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-            'two_factor_confirmed_at' => 'datetime',
+            'email_verified_at'      => 'datetime',
+            'password'               => 'hashed',
+            'two_factor_confirmed_at'=> 'datetime',
         ];
     }
+
+    // Role helpers
+    public function isAdmin(): bool    { return $this->role === 'admin'; }
+    public function isEmployee(): bool { return $this->role === 'employee'; }
+    public function isClient(): bool   { return $this->role === 'client'; }
+
+    // Relationships
+    public function clientProjects()   { return $this->hasMany(Project::class, 'client_id'); }
+    public function employeeProjects() { return $this->hasMany(Project::class, 'employee_id'); }
 }

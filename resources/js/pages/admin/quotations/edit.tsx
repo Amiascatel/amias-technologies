@@ -51,11 +51,11 @@ export default function QuotationEdit({ quotation: q }: { quotation: Quotation }
             <div className="p-6 max-w-5xl space-y-6">
                 <h1 className="text-2xl font-bold">Edit Quotation — {q.quote_number}</h1>
                 <form onSubmit={submit} className="space-y-6">
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
-                        <h2 className="col-span-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">Quotation Details</h2>
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
+                        <h2 className="col-span-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Quotation Details</h2>
                         <div className="space-y-1"><Label>Quote Number *</Label><Input value={data.quote_number} onChange={e => setData('quote_number', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Status</Label>
-                            <select className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm" value={data.status} onChange={e => setData('status', e.target.value)}>
+                            <select className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm" value={data.status} onChange={e => setData('status', e.target.value)}>
                                 {['draft','sent','accepted','rejected','expired'].map(s => <option key={s} value={s}>{s.charAt(0).toUpperCase()+s.slice(1)}</option>)}
                             </select>
                         </div>
@@ -64,8 +64,8 @@ export default function QuotationEdit({ quotation: q }: { quotation: Quotation }
                         <div className="col-span-2 space-y-1"><Label>Project / Service</Label><Input value={data.project_description} onChange={e => setData('project_description', e.target.value)} /></div>
                     </div>
 
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
-                        <h2 className="col-span-2 text-sm font-semibold text-gray-500 uppercase tracking-wide">Client Details</h2>
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
+                        <h2 className="col-span-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">Client Details</h2>
                         <div className="space-y-1"><Label>Client Name *</Label><Input value={data.client_name} onChange={e => setData('client_name', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Company</Label><Input value={data.client_company} onChange={e => setData('client_company', e.target.value)} /></div>
                         <div className="space-y-1"><Label>Email</Label><Input type="email" value={data.client_email} onChange={e => setData('client_email', e.target.value)} /></div>
@@ -73,10 +73,10 @@ export default function QuotationEdit({ quotation: q }: { quotation: Quotation }
                         <div className="col-span-2 space-y-1"><Label>Address</Label><textarea className={taClass} rows={2} value={data.client_address} onChange={e => setData('client_address', e.target.value)} /></div>
                     </div>
 
-                    <div className="bg-white rounded-xl border p-6 space-y-4">
-                        <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Line Items</h2>
+                    <div className="bg-card rounded-xl border p-6 space-y-4">
+                        <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">Line Items</h2>
                         <table className="w-full text-sm">
-                            <thead className="bg-gray-50 text-xs text-gray-500 uppercase">
+                            <thead className="bg-muted/50 text-xs text-muted-foreground uppercase">
                                 <tr>
                                     <th className="px-3 py-2 text-left w-[40%]">Description</th>
                                     <th className="px-3 py-2 text-right w-16">Qty</th>
@@ -86,7 +86,7 @@ export default function QuotationEdit({ quotation: q }: { quotation: Quotation }
                                     <th className="px-3 py-2 w-10"></th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y">
+                            <tbody className="divide-y divide-border">
                                 {items.map((item, i) => (
                                     <tr key={i}>
                                         <td className="px-3 py-2"><Input value={item.description} onChange={e => updateItem(i, 'description', e.target.value)} /></td>
@@ -109,7 +109,7 @@ export default function QuotationEdit({ quotation: q }: { quotation: Quotation }
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-xl border p-6 grid grid-cols-2 gap-4">
+                    <div className="bg-card rounded-xl border p-6 grid grid-cols-2 gap-4">
                         <div className="col-span-2 space-y-1"><Label>Notes</Label><textarea className={taClass} rows={2} value={data.notes} onChange={e => setData('notes', e.target.value)} /></div>
                         <div className="col-span-2 space-y-1"><Label>Terms &amp; Conditions</Label><textarea className={taClass} rows={3} value={data.terms} onChange={e => setData('terms', e.target.value)} /></div>
                     </div>
