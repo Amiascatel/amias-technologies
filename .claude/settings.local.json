@@ -24,7 +24,22 @@
       "Bash(powershell -File:*)",
       "Bash(bash --version)",
       "Bash(cat:*)",
-      "Bash(/tmp/write_edit.js:*)"
+      "Bash(/tmp/write_edit.js:*)",
+      "Bash(cmd /c \"cd /d D:\\\\project\\\\herd\\\\amias-technologies && php artisan migrate --no-interaction\")",
+      "Bash(cmd /c \"cd /d D:\\\\project\\\\herd\\\\amias-technologies && php artisan migrate --no-interaction 2>&1\")",
+      "Bash(cmd /c \"cd /d D:\\\\project\\\\herd\\\\amias-technologies && php artisan --version\")",
+      "Bash(echo:*)",
+      "Bash(php:*)",
+      "Bash(/c/xampp/php/php artisan migrate --no-interaction)",
+      "Bash(where.exe:*)",
+      "Bash(\"C:/Users/AMIAS/.config/herd/bin/php84/php.exe\" artisan migrate --no-interaction)",
+      "Bash(\"C:/Users/AMIAS/.config/herd/bin/php84/php.exe\" /c/ProgramData/ComposerSetup/bin/composer.phar dump-autoload --no-interaction)",
+      "Bash(cmd /c \"rd /s /q \"\"D:\\\\project\\\\herd\\\\amias-technologies\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Scheduling\"\"\")",
+      "Bash(\"C:/Users/AMIAS/.config/herd/bin/php84/php.exe\":*)",
+      "Bash(\"C:/Users/AMIAS/.config/herd/bin/php84/php.exe\" artisan --version)",
+      "Bash(\"C:/Users/AMIAS/.config/herd/bin/php84/php.exe\" artisan wayfinder:generate --with-form)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:ui.aceternity.com)"
     ]
   }
 }

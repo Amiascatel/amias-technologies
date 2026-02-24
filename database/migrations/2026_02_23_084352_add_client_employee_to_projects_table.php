@@ -1,8 +1,8 @@
 <?php
 
-use IlluminateDatabaseMigrationsMigration;
-use IlluminateDatabaseSchemaBlueprint;
-use IlluminateSupportFacadesSchema;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -17,8 +17,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->dropForeignIdFor(AppModelsUser::class, 'client_id');
-            $table->dropForeignIdFor(AppModelsUser::class, 'employee_id');
+            $table->dropForeignIdFor(\App\Models\User::class, 'client_id');
+            $table->dropForeignIdFor(\App\Models\User::class, 'employee_id');
             $table->dropColumn(['client_id', 'employee_id']);
         });
     }

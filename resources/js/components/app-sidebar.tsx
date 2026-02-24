@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import {
     LayoutGrid, Package, FolderKanban,
-    Receipt, FileSpreadsheet, LifeBuoy, Files, MessageSquare, Globe, Settings,
+    Receipt, FileSpreadsheet, LifeBuoy, Files, MessageSquare, Globe, Settings, Users,
 } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -28,6 +28,7 @@ const mainNavItems: NavItem[] = [
     { title: 'Support Tickets', href: '/admin/support-tickets',  icon: LifeBuoy },
     { title: 'Documents',       href: '/admin/documents',        icon: Files },
     { title: 'Messages',        href: '/admin/contact-messages', icon: MessageSquare },
+    { title: 'Users',           href: '/admin/users',            icon: Users },
 ];
 
 const footerNavItems: NavItem[] = [

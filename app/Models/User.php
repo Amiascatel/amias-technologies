@@ -1,11 +1,11 @@
 <?php
 
-namespace AppModels;
+namespace App\Models;
 
-use IlluminateDatabaseEloquentFactoriesHasFactory;
-use IlluminateFoundationAuthUser as Authenticatable;
-use IlluminateNotificationsNotifiable;
-use LaravelFortifyTwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {

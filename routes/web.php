@@ -24,6 +24,7 @@ Route::get('/contact', fn () => Inertia::render('homepages/contact'))->name('con
 Route::post('/contact',[ContactController::class, 'store'])->name('contact.store');
 Route::get('/quote',   [QuoteController::class, 'show'])->name('quote');
 Route::post('/quote',  [QuoteController::class, 'store'])->name('quote.store');
+Route::get('/pricing', fn () => Inertia::render('homepages/pricing'))->name('pricing');
 
 // ── Smart dashboard redirect based on role ────────────────────
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {

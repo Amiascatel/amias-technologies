@@ -32,80 +32,21 @@ function LoadingSplash() {
     return (
         <div
             className="fixed inset-0 z-[999] flex flex-col items-center justify-center select-none"
-            style={{
-                backgroundColor: '#0D0F14',
-                opacity,
-                transition: 'opacity 0.6s ease',
-            }}
+            style={{ backgroundColor: '#14213D', opacity, transition: 'opacity 0.6s ease' }}
         >
-            {/* Spinning ring + logo */}
+            {/* Spinning rings + logo */}
             <div className="relative flex items-center justify-center mb-7">
-                {/* Outer static ring */}
-                <div
-                    className="absolute rounded-full"
-                    style={{ width: 90, height: 90, border: '1.5px solid rgba(37,99,235,0.18)' }}
-                />
-                {/* Spinning accent ring */}
-                <div
-                    className="absolute rounded-full"
-                    style={{
-                        width: 90,
-                        height: 90,
-                        border: '2px solid transparent',
-                        borderTopColor: '#2563EB',
-                        borderRightColor: '#60a5fa',
-                        animation: 'splashSpin 0.9s linear infinite',
-                    }}
-                />
-                {/* Second slower ring */}
-                <div
-                    className="absolute rounded-full"
-                    style={{
-                        width: 72,
-                        height: 72,
-                        border: '1.5px solid transparent',
-                        borderBottomColor: 'rgba(37,99,235,0.5)',
-                        animation: 'splashSpin 1.6s linear infinite reverse',
-                    }}
-                />
-                {/* Logo centered */}
-                <img
-                    src="/logo.png"
-                    alt="Amias Technologies"
-                    className="relative z-10 object-contain"
-                    style={{ width: 46, height: 46 }}
-                />
+                <div className="absolute rounded-full" style={{ width: 90, height: 90, border: '1.5px solid rgba(252,163,17,0.18)' }} />
+                <div className="absolute rounded-full" style={{ width: 90, height: 90, border: '2px solid transparent', borderTopColor: '#FCA311', borderRightColor: '#e8940a', animation: 'splashSpin 0.9s linear infinite' }} />
+                <div className="absolute rounded-full" style={{ width: 72, height: 72, border: '1.5px solid transparent', borderBottomColor: 'rgba(252,163,17,0.5)', animation: 'splashSpin 1.6s linear infinite reverse' }} />
+                <img src="/logo.png" alt="Amias Technologies" className="relative z-10 object-contain" style={{ width: 46, height: 46 }} />
             </div>
-
-            {/* Company name */}
-            <p
-                className="font-bold text-[15px]"
-                style={{
-                    color: '#2563EB',
-                    letterSpacing: '6px',
-                    textTransform: 'uppercase',
-                    animation: 'splashPulse 1.6s ease-in-out infinite',
-                }}
-            >
+            <p className="font-bold text-[15px]" style={{ color: '#FCA311', letterSpacing: '6px', textTransform: 'uppercase', animation: 'splashPulse 1.6s ease-in-out infinite' }}>
                 amiastech
             </p>
-            <p className="mt-2 text-[10px] uppercase tracking-[3px]" style={{ color: 'rgba(255,255,255,0.2)' }}>
-                Loading
-            </p>
-
-            {/* Progress bar */}
-            <div
-                className="mt-8 overflow-hidden rounded-full"
-                style={{ width: 120, height: 2, backgroundColor: 'rgba(255,255,255,0.07)' }}
-            >
-                <div
-                    style={{
-                        height: '100%',
-                        borderRadius: 9999,
-                        background: 'linear-gradient(90deg, #1d4ed8, #60a5fa)',
-                        animation: 'splashProgress 1.8s ease-in-out forwards',
-                    }}
-                />
+            <p className="mt-2 text-[10px] uppercase tracking-[3px]" style={{ color: 'rgba(255,255,255,0.2)' }}>Loading</p>
+            <div className="mt-8 overflow-hidden rounded-full" style={{ width: 120, height: 2, backgroundColor: 'rgba(255,255,255,0.07)' }}>
+                <div style={{ height: '100%', borderRadius: 9999, background: 'linear-gradient(90deg,#FCA311,#e8940a)', animation: 'splashProgress 1.8s ease-in-out forwards' }} />
             </div>
         </div>
     );
