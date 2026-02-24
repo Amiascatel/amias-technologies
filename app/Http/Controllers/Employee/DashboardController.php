@@ -19,16 +19,18 @@ class DashboardController extends Controller
         return Inertia::render('employee/dashboard', ['projects' => $projects]);
     }
 
-    public function projectShow(Request $request, Project $project)
+    public function projectShow(Project $project)
     {
-        if ($request->user()->role === 'employee' && $project->employee_id !== $request->user()->id) abort(403);
-        $project->load(['client:id,name,email,phone','employee:id,name,email']);
+        // ProjectPolicy::view() ensures employee is assigned to this project
+        $this->authorize('view', $project);
+        $project->load(['client:id,name,email,phone', 'employee:id,name,email']);
         return Inertia::render('employee/project-show', ['project' => $project]);
     }
 
     public function projectUpdate(Request $request, Project $project)
     {
-        if ($request->user()->role === 'employee' && $project->employee_id !== $request->user()->id) abort(403);
+        // ProjectPolicy::update() ensures employee can only update their assigned project
+        $this->authorize('update', $project);
         $v = $request->validate(['status'=>'required|in:planning,active,completed,on_hold,cancelled','notes'=>'nullable|string']);
         $project->update($v);
         return back()->with('success', 'Project updated.');

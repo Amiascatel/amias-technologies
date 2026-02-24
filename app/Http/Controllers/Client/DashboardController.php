@@ -26,9 +26,10 @@ class DashboardController extends Controller
         return Inertia::render('client/dashboard', compact('projects','invoices','quotations','tickets'));
     }
 
-    public function projectShow(Request $request, Project $project)
+    public function projectShow(Project $project)
     {
-        if ($project->client_id !== $request->user()->id) abort(403);
+        // ProjectPolicy::view() ensures this client owns the project
+        $this->authorize('view', $project);
         $project->load(['employee:id,name,email,phone']);
         return Inertia::render('client/project-show', ['project' => $project]);
     }

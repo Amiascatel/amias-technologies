@@ -6,17 +6,33 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * EnsureIsEmployee  (alias: 'employee' / 'staff')
+ *
+ * Grants access to staff members: role = 'admin' OR 'employee'.
+ * Clients are redirected to their own portal with an error.
+ *
+ * Applied to:  /admin/* prefix routes (shared admin panel),
+ *              /employee/* prefix routes (employee portal).
+ *
+ * Permission summary inside the admin panel:
+ *   admin    – everything (further restricted by EnsureIsAdmin)
+ *   employee – dashboard, assigned projects (update only),
+ *              support tickets
+ */
 class EnsureIsEmployee
 {
     public function handle(Request $request, Closure $next): Response
     {
-        $role = $request->user()?->role;
+        $user = $request->user();
 
-        if (! in_array($role, ['admin', 'employee'])) {
+        if (! $user?->isStaff()) {
             if ($request->expectsJson()) {
-                abort(403, 'Forbidden.');
+                abort(403, 'Staff access required.');
             }
-            return redirect('/dashboard')->with('error', 'Access denied.');
+
+            return redirect('/client/dashboard')
+                ->with('error', 'That area is for staff members only.');
         }
 
         return $next($request);
